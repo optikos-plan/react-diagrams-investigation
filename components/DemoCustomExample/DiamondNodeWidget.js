@@ -14,6 +14,7 @@ export class DiamonNodeWidget extends React.Component {
             width: this.props.size,
             height: this.props.size
         }}>
+        <input type="text" style={{"position": "relative", top: 100}} />
 				<svg width={this.props.size} height={this.props.size} dangerouslySetInnerHTML={{
             __html: `
           <g id="Layer_1">
@@ -31,7 +32,7 @@ export class DiamonNodeWidget extends React.Component {
                 this.props.size / 2 +
                 `,` +
                 (this.props.size - 10) +
-                ` "/>
+                `"/>
           </g>
         `
         }}/>
