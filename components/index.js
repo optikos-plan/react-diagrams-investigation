@@ -4,12 +4,12 @@ import './index.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import simpleExampleRender from './SimpleExample'
+import Custom from './DemoCustomExample'
 
 ReactDOM.render(
-  <div id='demo' className='bg-blue column center-xy fill-xy'>
-    <h1>Simple Example</h1>
-    {simpleExampleRender()}
+  <div className='bg-blue column'>
+    <h1>Custom Example</h1>
+    <Custom />
   </div>,
   document.getElementById('app')
 )
