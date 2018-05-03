@@ -18,3 +18,26 @@
 - Demos: http://www.projectstorm.io/react-diagrams/?selectedKind=Simple%20Usage&selectedStory=Simple%20example&full=0&addons=1&stories=1&panelRight=1&addonPanel=storybook%2Fcode%2Fpanel
 - Node remaining example: https://github.com/projectstorm/react-diagrams/issues/50
 - Another example*: https://github.com/adventure-weave/web-editor/blob/master/src/widgets/SceneNodeWidget.tsx
+
+## Method to create custom node
+* What do arguments inside super() do?
+
+1. Create SimplePortFactory
+  - constructor
+  - getNewInstance()
+2. Create MainPortModel
+  - constructor
+  - serialize()
+  - deSerialize()
+  - createLinkModel()
+  - What are the serialize and deSerialize methods doing?
+3. Create MainNodeFactory
+  - constructor
+  - generateReactWidget(diagramEngine, node)
+  - getNewInstance()
+4. Create MainNodeWidget
+  - constructor
+  - renders
+  - What is `<g>` and what is `<polygon />`
+5. Create MainNodeModel
+  - constructor
