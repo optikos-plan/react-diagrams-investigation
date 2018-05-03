@@ -30,7 +30,7 @@ export default () => {
 
   // link the ports
   let link1 = port1.link(port2);
-  // (link1 as DefaultLinkModel).addLabel('Hello World!')
+  (link1).addLabel('Hello World!')
 
   //4) add the models to the root graph
   model.addAll(node1, node2, link1)
