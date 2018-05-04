@@ -8,7 +8,7 @@ export class DiamonNodeWidget extends React.Component {
         super(props);
         this.state = {
             showTitle: true,
-            title: 'Default Title'
+            title: props.title
         };
         this.handleTitle = this.handleTitle.bind(this)
     }
@@ -28,6 +28,7 @@ export class DiamonNodeWidget extends React.Component {
 
     render() {
 
+
         return (<div className={"diamond-node"} style={{
             position: "relative",
             width: this.props.size,
@@ -35,7 +36,7 @@ export class DiamonNodeWidget extends React.Component {
         }}>
         {this.state.showTitle ?
           <span onDoubleClick={this.handleTitle} style={{"position": "absolute"}}>{this.state.title}</span>
-          : <input defaultValue={this.state.title} onBlur={this.handleTitle} type="text" style={{"position": "absolute", top: 100}} />
+          : <input onKeyDown={event.preventDefault()} autoFocus={true} defaultValue={this.state.title} onBlur={this.handleTitle} type="text" style={{"position": "absolute", top: 100}} />
     }
 
 
