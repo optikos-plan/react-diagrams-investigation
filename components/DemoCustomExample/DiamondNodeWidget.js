@@ -14,7 +14,7 @@ export class DiamonNodeWidget extends React.Component {
             width: this.props.size,
             height: this.props.size/2
         }}>
-        <input type="text" style={{"position": "relative", top: 100}} />
+        {/* <input type="text" style={{"position": "relative", top: 100}} /> */}
 				<svg width={this.props.size} height={this.props.size/2} dangerouslySetInnerHTML={{
             __html: `
           <g id="Layer_1">
@@ -27,7 +27,7 @@ export class DiamonNodeWidget extends React.Component {
 				<div id="test" style={{
             position: "absolute",
             zIndex: 10,
-            top: this.props.size / 4 + 8,
+            top: this.props.size / 4 - 8,
             left: -8
         }}>
 					<PortWidget name="left" node={this.props.node}/>
@@ -36,7 +36,7 @@ export class DiamonNodeWidget extends React.Component {
             position: "absolute",
             zIndex: 10,
             left: this.props.size / 2 - 8,
-            top: 10
+            top: -8
         }}>
 					<PortWidget name="top" node={this.props.node}/>
 				</div>
@@ -44,7 +44,7 @@ export class DiamonNodeWidget extends React.Component {
             position: "absolute",
             zIndex: 10,
             left: this.props.size - 8,
-            top: this.props.size / 2 - 8
+            top: this.props.size / 4 - 8
         }}>
 					<PortWidget name="right" node={this.props.node}/>
 				</div>
@@ -52,7 +52,7 @@ export class DiamonNodeWidget extends React.Component {
             position: "absolute",
             zIndex: 10,
             left: this.props.size / 2 - 8,
-            top: this.props.size - 8
+            top: this.props.size / 2 - 8
         }}>
 					<PortWidget name="bottom" node={this.props.node}/>
 				</div>
