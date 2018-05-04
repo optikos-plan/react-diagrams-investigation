@@ -6,18 +6,26 @@ export class DiamondNodeFactory extends SRD.AbstractNodeFactory {
     constructor(props) {
         super("diamond");
             this.state ={
-                title: props // 
+                title: props, // 
+                i: 0
             }
 
     }
     generateReactWidget(diagramEngine, node) {
-        if (this.state.title[this.state.title.length - 1]) {
-            console.log("sending out diamondwidgets", this.state.title[this.state.title.length - 1])
-           
-            return <DiamonNodeWidget title={this.state.title[this.state.title.length - 1]} node={node}/>;
+
+
+        let oldI = this.state.i
+            const diamond = <DiamonNodeWidget title={this.state.title[oldI]} node={node} />;
+        if (this.state.i < 2) {
+            this.state.i++
+        } else {
+            this.state.i = 0
         }
+       return diamond
+
         
-       this.setState({ title: ["Title WORKS!"]})
+    //    this.setState({ title: ["Title WORKS!"]})
+    //    console.log("state", this.state.title)
    
         
     }
