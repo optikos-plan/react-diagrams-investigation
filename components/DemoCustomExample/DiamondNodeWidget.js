@@ -6,15 +6,37 @@ import { PortWidget } from "storm-react-diagrams";
 export class DiamonNodeWidget extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            showTitle: true
+        };
+        this.handleTitle = this.handleTitle.bind(this)
     }
+
+    handleTitle () {
+/*         if (this.state.showTitle) {
+            this.setState({showTitle: false})
+        } else {
+            this.setState({showTitle: true})
+        } */
+       const oppositeShowTitle = !this.state.showTitle
+       this.setState ({
+           showTitle: oppositeShowTitle
+       })
+    }
+
     render() {
+
         return (<div className={"diamond-node"} style={{
             position: "relative",
             width: this.props.size,
             height: this.props.size/2
         }}>
-        {/* <input type="text" style={{"position": "relative", top: 100}} /> */}
+        {this.state.showTitle ?
+          <span onDoubleClick={this.handleTitle} style={{"position": "absolute"}}>Title1 </span>
+          : <input onDoubleClick={this.handleTitle} type="text" style={{"position": "absolute", top: 100}} />
+    }
+
+
 				<svg width={this.props.size} height={this.props.size/2} dangerouslySetInnerHTML={{
             __html: `
           <g id="Layer_1">
