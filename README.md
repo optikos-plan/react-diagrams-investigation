@@ -38,6 +38,8 @@
 4. Create MainNodeWidget
   - constructor
   - renders
-  - What is `<g>` and what is `<polygon />`
+  - What is `<g>` and what is `<polygon />`?
+    - `<g>`: group
+    - `<polygon />`: just a polygon in svg
 5. Create MainNodeModel
   - constructor

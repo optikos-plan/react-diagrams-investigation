@@ -7,7 +7,8 @@ export class DiamonNodeWidget extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showTitle: true
+            showTitle: true,
+            title: 'Default Title'
         };
         this.handleTitle = this.handleTitle.bind(this)
     }
@@ -24,6 +25,7 @@ export class DiamonNodeWidget extends React.Component {
        })
     }
 
+
     render() {
 
         return (<div className={"diamond-node"} style={{
@@ -32,8 +34,8 @@ export class DiamonNodeWidget extends React.Component {
             height: this.props.size/2
         }}>
         {this.state.showTitle ?
-          <span onDoubleClick={this.handleTitle} style={{"position": "absolute"}}>Title1 </span>
-          : <input onDoubleClick={this.handleTitle} type="text" style={{"position": "absolute", top: 100}} />
+          <span onDoubleClick={this.handleTitle} style={{"position": "absolute"}}>{this.state.title}</span>
+          : <input defaultValue={this.state.title} onBlur={this.handleTitle} type="text" style={{"position": "absolute", top: 100}} />
     }
 
 
@@ -42,7 +44,7 @@ export class DiamonNodeWidget extends React.Component {
           <g id="Layer_1">
           </g>
           <g id="Layer_2">
-          <rect fill="grey" x="0" y="0" rx="10" ry="10" width="${this.props.size}" height="${this.props.size/2}"/>
+          <rect fill="grey" x="0" y="0" rx="10" ry="10" width="${this.props.size}" height="${this.props.size / 2}"/>
           </g>
         `
         }}/>
