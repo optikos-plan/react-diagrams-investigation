@@ -12,9 +12,6 @@ import { SimplePortFactory } from './SimplePortFactory'
 import { TaskPortModel } from './TaskPortModel'
 import axios from 'axios'
 
-// we change this to a class wwith a state
-// oncomponentDidMount => axios pull data into state
-//
 import 'storm-react-diagrams/dist/style.min.css'
 /**
  * @Author Dylan Vorster
@@ -23,39 +20,32 @@ export default class TaskNode extends React.Component {
   constructor() {
     super()
 
-    this.state = {
-      nodes: [],
-      tasks: []
-    }
+    this.state = { tasks: [] }
 
-    this.registerEngineWithTasks()
+    this.registerEngine()
   }
 
-  registerEngineWithTasks() {
-    console.log('state', this.state.tasks)
+  registerEngine() {
+    this.engine = new DiagramEngine()
+    this.engine.installDefaultFactories()
 
-    if (this.engine === undefined) {
-      this.engine = new DiagramEngine()
-      this.engine.installDefaultFactories()
+    this.engine.registerPortFactory(
+      new SimplePortFactory('task', config => new TaskPortModel())
+    )
 
-      this.engine.registerPortFactory(
-        new SimplePortFactory('task', config => new TaskPortModel())
-      )
+    const taskNames = this.state.tasks.map(task => task.title)
 
-      const taskNames = this.state.tasks.map(task => task.title)
-      console.log(taskNames)
+    this.engine.registerNodeFactory(new TaskNodeFactory())
+    this.model = new DiagramModel()
+    this.updateTasks()
+    this.engine.setDiagramModel(this.model)
+  }
 
-      // sets names for generated tasks
-      this.engine.registerNodeFactory(new TaskNodeFactory(['hi there']))
-      this.model = new DiagramModel()
-    }
-
+  updateTasks() {
     this.state.tasks.forEach(task => {
-      const node = new TaskNodeModel()
+      const node = new TaskNodeModel(task)
       this.model.addNode(node)
     })
-
-    this.engine.setDiagramModel(this.model)
   }
 
   async componentDidMount() {
@@ -63,16 +53,15 @@ export default class TaskNode extends React.Component {
       'https://optikos-data-db.herokuapp.com/api/tasks'
     )
     this.setState({ tasks: data })
-    this.registerEngineWithTasks()
-    this.engine.registerNodeFactory(
-      new TaskNodeFactory(data.map(task => task.title))
-    )
+    this.updateTasks()
+    this.forceUpdate()
   }
 
   render() {
     return (
       <DiagramWidget
         className="srd-demo-canvas custom"
+        model={this.model}
         diagramEngine={this.engine}
       />
     )

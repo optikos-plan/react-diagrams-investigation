@@ -5,16 +5,15 @@ import { PortWidget } from 'storm-react-diagrams'
  */
 export class TaskNodeWidget extends React.Component {
   constructor(props) {
+    // should also send in a changeTitleFn() as prop
     super(props)
     this.state = {
-      showTitle: true,
-      title: props.title
+      showTitle: true
     }
     this.handleTitle = this.handleTitle.bind(this)
   }
 
   handleTitle() {
-
     const oppositeShowTitle = !this.state.showTitle
     this.setState({
       showTitle: oppositeShowTitle
@@ -34,13 +33,13 @@ export class TaskNodeWidget extends React.Component {
           <span
             onDoubleClick={this.handleTitle}
             style={{ position: 'absolute' }}>
-            {this.state.title}
+            {this.props.node.task.title}
           </span>
         ) : (
           <input
             onKeyDown={event.preventDefault()}
             autoFocus={true}
-            defaultValue={this.state.title}
+            defaultValue={this.props.node.task.title}
             onBlur={this.handleTitle}
             type="text"
             style={{ position: 'absolute', top: 100 }}
