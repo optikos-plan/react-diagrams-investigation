@@ -16,7 +16,7 @@ export class TaskNodeFactory extends SRD.AbstractNodeFactory {
 
         let oldI = this.state.i
             const task = <TaskNodeWidget title={this.state.title[oldI]} node={node} />;
-        if (this.state.i < 2) {
+        if (this.state.i < this.state.title.length - 1) {
             this.state.i++
         } else {
             this.state.i = 0

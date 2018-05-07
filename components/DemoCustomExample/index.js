@@ -64,27 +64,12 @@ export default class TaskNode extends React.Component {
         {}
       ]
     }
-
-    //4) add the models to the root graph
-
-    /* const t1 = new TaskNodeModel()
-     * t1.setPosition(500, 300)
-     * const t2 = new TaskNodeModel()
-     * t2.setPosition(400, 200)
-     * const portOut = t1.getPort('bottom')
-     * console.log(portOut)
-     * const portIn = t2.getPort('top')
-     * const link = portOut.link(portIn)
-     * this.model.addAll(t1, t2, link) */
-
-    // var node1 = new DefaultNodeModel('Node 1', 'rgb(0,192,255)')
-    // var port1 = node1.addOutPort('Out')
+ 
     var node1 = new TaskNodeModel()
     var port1 = node1.getPort('bottom')
     node1.setPosition(500, 300)
 
-    // var node2 = new DefaultNodeModel('Node 2', 'rgb(0,192,255)')
-    // var port2 = node2.addInPort('In')
+
     var node2 = new TaskNodeModel()
     var port2 = node2.getPort('left')
     node2.setPosition(300, 200)
@@ -92,21 +77,11 @@ export default class TaskNode extends React.Component {
     const link = port1.link(port2)
     link.addLabel('Hi')
 
-    // console.log('port1 can link to port', port1.canLinkToPort(port2))
-    // console.log('link', link)
-
     console.log('port1', port1)
     console.log('port2', port2)
     this.model.addAll(node1, port1, node2, port2, link)
 
-    /* this.state.tasks.map((task, i) => {
-     *   console.log(task.title)
-     *   const newTask = new TaskNodeModel()
-     *   newTask.setPosition(500, 500 - i * 100)
-     *   return this.model.addAll(newTask)
-     * }) */
 
-    //5) load model into engine
     this.engine.setDiagramModel(this.model)
   }
 

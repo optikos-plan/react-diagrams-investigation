@@ -1,15 +1,15 @@
-import * as _ from "lodash";
-import { PortModel, DefaultLinkModel, DefaultPortModel } from "storm-react-diagrams";
+import * as _ from 'lodash';
+import { PortModel, DefaultLinkModel, DefaultPortModel } from 'storm-react-diagrams';
 export class TaskPortModel extends PortModel {
-    constructor(pos = "top") {
-        super(pos, "task");
-        this.position = pos;
-    }
-    serialize() {
-        return _.merge(super.serialize(), {
-            position: this.position
-        });
-    }
+	constructor(pos = 'top') {
+		super(pos, 'task');
+		this.position = pos;
+	}
+	serialize() {
+		return _.merge(super.serialize(), {
+			position: this.position
+		});
+	}
 
 	link(port) {
 		let link = this.createLinkModel();
@@ -18,12 +18,11 @@ export class TaskPortModel extends PortModel {
 		return link;
 	}
 
-
-    deSerialize(data, engine) {
-        super.deSerialize(data, engine);
-        this.position = data.position;
-    }
-    createLinkModel() {
-        return new DefaultLinkModel();
-    }
+	deSerialize(data, engine) {
+		super.deSerialize(data, engine);
+		this.position = data.position;
+	}
+	createLinkModel() {
+		return new DefaultLinkModel();
+	}
 }
