@@ -3,7 +3,7 @@ import { PortWidget } from 'storm-react-diagrams'
 /**
  * @author Dylan Vorster
  */
-export class DiamonNodeWidget extends React.Component {
+export class TaskNodeWidget extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -14,11 +14,7 @@ export class DiamonNodeWidget extends React.Component {
   }
 
   handleTitle() {
-    /*         if (this.state.showTitle) {
-            this.setState({showTitle: false})
-        } else {
-            this.setState({showTitle: true})
-        } */
+
     const oppositeShowTitle = !this.state.showTitle
     this.setState({
       showTitle: oppositeShowTitle
@@ -28,7 +24,7 @@ export class DiamonNodeWidget extends React.Component {
   render() {
     return (
       <div
-        className={'diamond-node'}
+        className={'task-node'}
         style={{
           position: 'relative',
           width: this.props.size,
@@ -107,7 +103,7 @@ export class DiamonNodeWidget extends React.Component {
     )
   }
 }
-DiamonNodeWidget.defaultProps = {
+TaskNodeWidget.defaultProps = {
   size: 150,
   node: null
 }

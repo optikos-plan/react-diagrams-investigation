@@ -1,8 +1,8 @@
 import * as _ from "lodash";
-import { PortModel, DefaultLinkModel } from "storm-react-diagrams";
-export class DiamondPortModel extends PortModel {
+import { PortModel, DefaultLinkModel, DefaultPortModel } from "storm-react-diagrams";
+export class TaskPortModel extends PortModel {
     constructor(pos = "top") {
-        super(pos, "diamond");
+        super(pos, "task");
         this.position = pos;
     }
     serialize() {
@@ -10,6 +10,15 @@ export class DiamondPortModel extends PortModel {
             position: this.position
         });
     }
+
+	link(port) {
+		let link = this.createLinkModel();
+		link.setSourcePort(this);
+		link.setTargetPort(port);
+		return link;
+	}
+
+
     deSerialize(data, engine) {
         super.deSerialize(data, engine);
         this.position = data.position;

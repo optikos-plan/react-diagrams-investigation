@@ -1,15 +1,14 @@
 import {
   DiagramEngine,
   DiagramModel,
-  DefaultNodeModel,
   DiagramWidget
 } from 'storm-react-diagrams'
 import * as React from 'react'
 // import the custom models
-import { DiamondNodeModel } from './DiamondNodeModel'
-import { DiamondNodeFactory } from './DiamondNodeFactory'
+import { TaskNodeModel } from './TaskNodeModel'
+import { TaskNodeFactory } from './TaskNodeFactory'
 import { SimplePortFactory } from './SimplePortFactory'
-import { DiamondPortModel } from './DiamondPortModel'
+import { TaskPortModel } from './TaskPortModel'
 import axios from 'axios'
 
 const props = ['Title 1', 'Title 2', 'Title 3']
@@ -29,13 +28,13 @@ export default class TaskNode extends React.Component {
     this.engine.installDefaultFactories()
 
     this.engine.registerPortFactory(
-      new SimplePortFactory('diamond', config => new DiamondPortModel())
+      new SimplePortFactory('task', config => new TaskPortModel())
     )
-    this.engine.registerNodeFactory(new DiamondNodeFactory(props))
+    this.engine.registerNodeFactory(new TaskNodeFactory(props))
 
     this.model = new DiagramModel()
 
-    /* const node2 = new DiamondNodeModel()
+    /* const node2 = new TaskNodeModel()
      * node2.setPosition(550, 108) */
 
     this.state = {
@@ -68,9 +67,9 @@ export default class TaskNode extends React.Component {
 
     //4) add the models to the root graph
 
-    /* const t1 = new DiamondNodeModel()
+    /* const t1 = new TaskNodeModel()
      * t1.setPosition(500, 300)
-     * const t2 = new DiamondNodeModel()
+     * const t2 = new TaskNodeModel()
      * t2.setPosition(400, 200)
      * const portOut = t1.getPort('bottom')
      * console.log(portOut)
@@ -80,21 +79,21 @@ export default class TaskNode extends React.Component {
 
     // var node1 = new DefaultNodeModel('Node 1', 'rgb(0,192,255)')
     // var port1 = node1.addOutPort('Out')
-    var node1 = new DiamondNodeModel()
+    var node1 = new TaskNodeModel()
     var port1 = node1.getPort('bottom')
     node1.setPosition(500, 300)
 
     // var node2 = new DefaultNodeModel('Node 2', 'rgb(0,192,255)')
     // var port2 = node2.addInPort('In')
-    var node2 = new DiamondNodeModel()
-    var port2 = node2.getPort('top')
+    var node2 = new TaskNodeModel()
+    var port2 = node2.getPort('left')
     node2.setPosition(300, 200)
 
-    const link = port1.addLink(port2)
+    const link = port1.link(port2)
     link.addLabel('Hi')
 
-    console.log('port1 can link to port', port1.canLinkToPort(port2))
-    console.log('link', link)
+    // console.log('port1 can link to port', port1.canLinkToPort(port2))
+    // console.log('link', link)
 
     console.log('port1', port1)
     console.log('port2', port2)
@@ -102,7 +101,7 @@ export default class TaskNode extends React.Component {
 
     /* this.state.tasks.map((task, i) => {
      *   console.log(task.title)
-     *   const newTask = new DiamondNodeModel()
+     *   const newTask = new TaskNodeModel()
      *   newTask.setPosition(500, 500 - i * 100)
      *   return this.model.addAll(newTask)
      * }) */
