@@ -23,38 +23,11 @@ export default class TaskNode extends React.Component {
   constructor() {
     super()
 
-    /*     this.engine = new DiagramEngine()
- *     this.engine.installDefaultFactories()
- *
- *     this.engine.registerPortFactory(
- *       new SimplePortFactory('task', config => new TaskPortModel())
- *     )
- *     this.engine.registerNodeFactory(new TaskNodeFactory(props))
- *
- *     this.model = new DiagramModel() */
-
-    /* const node2 = new TaskNodeModel()
-     * node2.setPosition(550, 108) */
-
     this.state = {
       nodes: [],
       tasks: []
     }
 
-    /*     var node1 = new TaskNodeModel()
- *     var port1 = node1.getPort('bottom')
- *     node1.setPosition(500, 300)
- *
- *     var node2 = new TaskNodeModel()
- *     var port2 = node2.getPort('left')
- *     node2.setPosition(300, 200)
- *
- *     const link = port1.link(port2)
- *     link.addLabel('Hi')
- *
- *     console.log('port1', port1)
- *     console.log('port2', port2)
- *     this.model.addAll(node1, port1, node2, port2, link) */
     this.registerEngineWithTasks()
   }
 
@@ -73,7 +46,7 @@ export default class TaskNode extends React.Component {
       console.log(taskNames)
 
       // sets names for generated tasks
-      this.engine.registerNodeFactory(new TaskNodeFactory(taskNames))
+      this.engine.registerNodeFactory(new TaskNodeFactory(['hi there']))
       this.model = new DiagramModel()
     }
 
@@ -91,6 +64,9 @@ export default class TaskNode extends React.Component {
     )
     this.setState({ tasks: data })
     this.registerEngineWithTasks()
+    this.engine.registerNodeFactory(
+      new TaskNodeFactory(data.map(task => task.title))
+    )
   }
 
   render() {
