@@ -33,8 +33,6 @@ export default class TaskNode extends React.Component {
       new SimplePortFactory('task', config => new TaskPortModel())
     )
 
-    const taskNames = this.state.tasks.map(task => task.title)
-
     this.engine.registerNodeFactory(new TaskNodeFactory())
     this.model = new DiagramModel()
     this.updateTasks()
@@ -42,18 +40,24 @@ export default class TaskNode extends React.Component {
   }
 
   updateTasks() {
+    console.log(this.state.tasks)
+    const nodeContainer = {
+    }
+    const ports = []
+    const links = []
     this.state.tasks.forEach(task => {
+
       const node = new TaskNodeModel(task)
       this.model.addNode(node)
     })
+    
   }
 
   async componentDidMount() {
     const { data } = await axios.get(
       'https://optikos-data-db.herokuapp.com/api/tasks'
     )
-    this.setState({ tasks: data })
-    this.updateTasks()
+    this.setState({ tasks: data }, () => this.updateTasks())
     this.forceUpdate()
   }
 
